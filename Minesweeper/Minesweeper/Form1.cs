@@ -12,14 +12,16 @@ namespace Minesweeper
 {
     public partial class Form1 : Form
     {
-        public int m;//width and
-        public int n; //height of board
-        public int hmmines;
+        private int m;//width and
+        private int n; //height of board
+        private int hmmines;
         private Button button;
         private int l = -1;
         //private double p; //probability of bomb existence
-        public bool[,] mines; //board array: true - mine is on, false - mine is off
-        public int[,] sol; //array for printing solution
+        private bool[,] mines; //board array: true - mine is on, false - mine is off
+        private int[,] sol; //array for printing solution
+
+        private List<Button> lb = new List<Button>();
 
         public Form1()
         {
@@ -65,20 +67,19 @@ namespace Minesweeper
             }
         }
 
-        public void removeButtons(int m, int n)
+        public void removeButtons(int m, int n)// it doesnt work as intended
         {
             for (int i = 1; i <= m; i++)
             {
                 for (int j = 1; j <= n; j++)
                 {
-                    this.Controls.Remove(button);
+                    this.Controls.Remove(button);//.Remove(button);
                 }
             }
         }
 
         public void CreateButtons(int m, int n, int hmmines)
         {
-            removeButtons(m, n);
             for (int i = 1; i <= m; i++)
             {
                 for (int j = 1; j <= n; j++)
@@ -96,8 +97,6 @@ namespace Minesweeper
                     if (mines[i, j]) button.Text = "*";
                 }
             }
-
-
         }
 
         /*  public Form1(int m, int n, double p)
@@ -146,7 +145,7 @@ namespace Minesweeper
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            fillWithMines(m, n, hmmines);
+           fillWithMines(m, n, hmmines);
             fillSolution();
             CreateButtons(m, n, hmmines);
             this.Width = 20 * m + 20;
