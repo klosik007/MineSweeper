@@ -16,12 +16,46 @@ namespace Minesweeper
         private int n; //height of board
         private int hmmines;
         private Button button;
-        private int l = -1;
+        //private int l = -1;
         //private double p; //probability of bomb existence
         private bool[,] mines; //board array: true - mine is on, false - mine is off
         private int[,] sol; //array for printing solution
 
-        private List<Button> lb = new List<Button>();
+        public int _m
+        {
+            get
+            {
+                return m;
+            }
+            set
+            {
+                m = value;
+            }
+        }
+
+        public int _n {
+            get
+            {
+                return n;
+            }
+            set
+            {
+                n = value;
+            }
+        }
+
+        public int _hmmines
+        {
+            get
+            {
+                return hmmines;
+            }
+            set
+            {
+                hmmines = value;
+            }
+        }
+//private List<Button> lb = new List<Button>();
 
         public Form1()
         {
@@ -69,13 +103,8 @@ namespace Minesweeper
 
         public void removeButtons(int m, int n)// it doesnt work as intended
         {
-            for (int i = 1; i <= m; i++)
-            {
-                for (int j = 1; j <= n; j++)
-                {
-                    this.Controls.Remove(button);//.Remove(button);
-                }
-            }
+            //this.Controls.Remove(button);//.Remove(button); 
+            button.Hide();     
         }
 
         public void CreateButtons(int m, int n, int hmmines)
@@ -85,7 +114,7 @@ namespace Minesweeper
                 for (int j = 1; j <= n; j++)
                 {
                     button = new Button();
-                    l++;
+                   // l++;
                     button.Width = 20;
                     button.Height = 20;
                     button.Location = new Point(20 * i - 20, 20 * j + 10);
@@ -139,13 +168,13 @@ namespace Minesweeper
 
         private void specifyBoardSizeAndBombsAmountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 frm2 = new Form2();
+            Form2 frm2 = new Form2(this);
             frm2.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           fillWithMines(m, n, hmmines);
+            fillWithMines(m,n,hmmines);
             fillSolution();
             CreateButtons(m, n, hmmines);
             this.Width = 20 * m + 20;
