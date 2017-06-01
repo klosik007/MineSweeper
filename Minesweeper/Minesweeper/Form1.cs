@@ -55,7 +55,7 @@ namespace Minesweeper
                 hmmines = value;
             }
         }
-//private List<Button> lb = new List<Button>();
+private List<Button> lb = new List<Button>();
 
         public Form1()
         {
@@ -101,10 +101,12 @@ namespace Minesweeper
             }
         }
 
-        public void removeButtons(int m, int n)// it doesnt work as intended
+        public void removeButtons(int m, int n)// it almost work as intended
         {
-            //this.Controls.Remove(button);//.Remove(button); 
-            button.Hide();     
+           foreach (Control item in this.Controls.OfType<Button>())
+            {
+                    this.Controls.Remove(item);
+            }     
         }
 
         public void CreateButtons(int m, int n, int hmmines)
