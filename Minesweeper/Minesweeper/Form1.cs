@@ -15,6 +15,7 @@ namespace Minesweeper
         private int m;//width and
         private int n; //height of board
         private int hmmines;
+        private int tick=0;
         private Button button;
         //private int l = -1;
         //private double p; //probability of bomb existence
@@ -181,6 +182,22 @@ private List<Button> lb = new List<Button>();
             CreateButtons(m, n, hmmines);
             this.Width = 20 * m + 20;
             this.Height = 20 * n + 70;
+            
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            tick++;
+            label2.Text = Convert.ToString(tick);
+            if (button.Text == "*")
+            {
+                timer1.Stop();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
     }
 }
